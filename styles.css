@@ -5,9 +5,10 @@
     
 }
 
-.more{
+h4{
     font-family: 'Audiowide', sans-serif;
     -webkit-text-stroke: 1px #01c6ff;
+    --bs-card-title-color:#ffd700;
 }
 
 h5{
@@ -27,13 +28,22 @@ body {
 }
 
 div .btn{
-    background: none;
+    
     border-radius: 10px;
     border-width: 5px;
     border-color: white;
     box-shadow: 0 7px 2px -2px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(1px);
     background-color: rgba(255, 255, 255, 0.5);
+    --bs-btn-font-family: 'Audiowide', sans-serif;
+    --bs-btn-hover-bg:  rgba(255, 255, 255, 0.5);
+    --bs-btn-hover-border-color:white;
+    --bs-btn-active-border-color:white;
+    --bs-btn-active-bg:rgba(255, 255, 255, 0.5);
+}
+
+div .btn:hover{
+  box-shadow: none;
 }
 
 #main{font-size:30px;
@@ -43,16 +53,16 @@ div .btn{
 .sidenav a {font-size: 18px;}
 
 .sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
+    height: 100%; 
+    width: 0; 
+    position: fixed; 
+    z-index: 1; 
     top: 0;
     right: 0;
-    background-color: #122a6b; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    background-color: #122a6b; 
+    overflow-x: hidden; 
+    padding-top: 60px; 
+    transition: 0.5s; 
 }
   
   /* The navigation menu links */
@@ -65,10 +75,6 @@ div .btn{
     transition: 0.3s;
 }
   
-  /* When you mouse over the navigation links, change their color */
-  .sidenav a:hover {
-    color: #f1f1f1;
-}
   
   /* Position and style the close button (top right corner) */
   .sidenav .closebtn {
@@ -79,16 +85,6 @@ div .btn{
     margin-left: 50px;
 }
 
-p{
-  background: none;
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 2px;
-  border-color: rgb(218, 0, 0);
-  box-shadow: 0 7px 2px -2px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(1px);
-  background-color: rgba(255, 255, 255, 0.5);
-}
 .over{
   background: none;
   border-style: solid;
@@ -100,10 +96,10 @@ p{
     background-color: rgba(255, 255, 255, 0.5);
 
 }
-  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-  #main {
-    transition: margin-left .5s;
-    padding: 20px;
+
+
+  .navBtn {
+    position:fixed; top:0; right:0;
 }
 
 
@@ -122,10 +118,15 @@ p{
   cursor: pointer; /* Add a pointer on hover */
   backdrop-filter: blur(6px);
 }
-div .poke{
-  display: none;
+
+.close {
+  font-size: 45px;
+  font-weight: 600;
+  color: white;
 }
 
+
   @media screen and (min-height: 750px) {
+    
 
   }
