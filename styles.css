@@ -1,3 +1,5 @@
+
+/* Styles for main header */
 .display-1 {
     font-family: 'Audiowide', sans-serif;
     color: #ffd700;
@@ -5,12 +7,14 @@
     
 }
 
+/* Styles for h4 headers */
 h4{
     font-family: 'Audiowide', sans-serif;
     -webkit-text-stroke: 1px #01c6ff;
     --bs-card-title-color:#ffd700;
 }
 
+/* Styles for h5 headers */
 h5{
     text-decoration: none;
     --bs-card-title-color:#ffd700;
@@ -21,12 +25,14 @@ h5{
     
 }
 
+/* Styles for body content */
 body {
   background: no-repeat center center fixed;
     background-image: url('images/AdobeStock_580291632.jpeg');
     background-size:cover;
 }
 
+/* Styles for buttons */
 div .btn{
     
     border-radius: 10px;
@@ -42,16 +48,17 @@ div .btn{
     --bs-btn-active-bg:rgba(255, 255, 255, 0.5);
 }
 
+/* Styles for hover on buttons */
 div .btn:hover{
   box-shadow: none;
 }
 
+/* Styles on main content */
 #main{font-size:30px;
     cursor:pointer;
 }
-.sidenav {padding-top: 15px;}
-.sidenav a {font-size: 18px;}
 
+/* Styles fopr sidenav */
 .sidenav {
     height: 100%; 
     width: 0; 
@@ -76,15 +83,18 @@ div .btn:hover{
 }
   
   
-  /* Position and style the close button (top right corner) */
+  /* Styles for close button in caught list */
   .sidenav .closebtn {
     position: absolute;
     top: 0;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
+    color: white;
+    cursor: pointer;
 }
 
+/* Styles for paragraphs in overlay */
 .over{
   background: none;
   border-style: solid;
@@ -97,36 +107,32 @@ div .btn:hover{
 
 }
 
-
+/* Styles for pokeball caught button */
   .navBtn {
     position:fixed; top:0; right:0;
+    cursor: pointer;
 }
 
 
-
+/* Styles for Overlay */
 #overlay {
-  position: fixed; /* Sit on top of the page content */
-  display: none; /* Hidden by default */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
+  position: fixed; 
+  display: none; 
+  width: 100%; 
+  height: 100%; 
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
+  background-color: rgba(0,0,0,0.5); 
+  z-index: 2; 
+  cursor: pointer; 
   backdrop-filter: blur(6px);
 }
 
+/* Styles for close button in overlay*/
 .close {
   font-size: 45px;
   font-weight: 600;
   color: white;
 }
-
-
-  @media screen and (min-height: 750px) {
-    
-
-  }
