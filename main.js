@@ -69,7 +69,7 @@ async function getPokemons(start){
             artworkImageUrl: data.sprites.other['official-artwork'].front_default,
             types: data.types.map(type => type.type.name), // Fetch the types
             abilities: data.abilities.map(ability => ability.ability.name), // Fetch the abilities
-            moves: data.moves.slice(0, 4).map(move => move.move.name) // Fetch the moves
+            moves: data.moves.slice(0, 2).map(move => move.move.name) // Fetch the moves
         };
         pokemons.push(pokemon);
     }
@@ -122,12 +122,20 @@ function showOverlay(button) {
       // Add the image and details to the overlay
       overlay.innerHTML = `
       <span id="btnclose" class="close" onclick="hideOverlay()">×</span>
-      <div class="container-fluid d-flex align-items-center justify-content-center text-center px-5 mt-5" id="pokemonsHd""> 
+      <div class="container-fluid d-flex align-items-center justify-content-center text-center px-5 mt-5" id="pokemonsHd"> 
         <div class="row">
-          <h5 class="over mx-2 col-lg-2 order-0 order-sm-0 order-md-0 order-lg-0"> Type: ${pokemon.types.join(', ')}</h5>
-          <h5 class="over col-lg-2 mx-2 order-2 order-sm-2 order-md-2 order-lg-0"> Abilities: ${pokemon.abilities.join(', ')}</h5>
-          <h5 class="over col-lg-2 mx-2 order-4 order-sm-4 order-md-4 order-lg-0"> Moves: ${pokemon.moves.join(', ')}</h5>
-          
+          <div class="over mx-2 col-lg-2 order-0 order-sm-0 order-md-0 order-lg-0 d-flex flex-column align-items-center justify-content-center">
+            <h5>Type</h5>
+            <p class="m-0">${pokemon.types.join(', ')}</p>
+          </div>
+          <div class="over mx-2 col-lg-2 order-2 order-sm-2 order-md-2 order-lg-0 d-flex flex-column align-items-center justify-content-center">
+            <h5>Abilities</h5>
+            <p class="m-0">${pokemon.abilities.join(', ')}</p>
+          </div>
+          <div class="over mx-2 col-lg-2 order-4 order-sm-4 order-md-4 order-lg-0 d-flex flex-column align-items-center justify-content-center">
+            <h5>Moves</h5>
+            <p class="m-0">${pokemon.moves.join(', ')}</p>
+          </div>
           <img src="${pokemon.artworkImageUrl}"  class= "col-lg-3 order-first order-lg-last" alt="">
         </div>
       </div>`;
@@ -136,6 +144,7 @@ function showOverlay(button) {
       overlay.style.display = 'block';
     }
 }
+
 
 
   
