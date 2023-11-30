@@ -19,35 +19,29 @@
         </div>
       </div>
     <div class="navpos">
-      <img src="/images/pokeball_on.png" class="navBtn" onclick="openNav()"></img> <!-- Image that opens a navigation menu when clicked -->
+      <img src="/images/pokeball_on.png" class="navBtn" id="openBtn"></img> <!-- Image that opens a navigation menu when clicked -->
     </div>
     </header>
 
     <main>
       <div id="mySideNav" class="sidenav position-absolute top-0 end-0"> <!-- Side navigation bar -->
+        
         <h4>Caught</h4>
-        <div class="closebtn" onclick="closeNav()">&times;</div> <!-- Close button for the side navigation bar -->
+        <div id="closeBtn" class="closebtn" >&times;</div>
+         <!-- Close button for the side navigation bar -->
       </div>
       
   
-      <div class="container justify-content-center" >  <!-- Container with content justified to the center -->
-        <div class="row row-cols-lg-3" > <!-- Row with three columns on large screens -->
-          <div  class="col-lg-3" id="pokemons">
-               <button class="card btn w-75 mb-3 mx-auto btn-outline-warning" > 
-                   <img src="" class=" button card-img-top" alt="bulbabsaur">   
-                  <img src="/images/pokeball_on.png" id="toggleButton" class="position-absolute top-0 start-0 translate-middle p-2"></img>
-                   <h5 class="card-title"></h5>   
+      <div class="container justify-content-center">
+        <div class="row row-cols-lg-3 button pokecard" id="pokemons">
+            <!-- The Pokemon cards will be added here -->
+        </div>
+    </div>
 
-               
-                </div>
-              </button>   
-                </div>
-          </div>
-      </div>
-
-      <div id="overlay" class="overlay"> <!-- Main overlay-->
+    
+      <div id="overlay" class="overlay"> 
         <span id="btnclose" class="close">&times;</span> <!-- Close button for the overlay -->
-          <div class="container-fluid text-center px-5 mt-5"> 
+          <div class="container-fluid text-center px-5 mt-5" id="pokemonsHd"> 
             <div class="row">    
               <h5 class="over mx-2 col-lg-2 order-0 order-sm-0 order-md-0 order-lg-0"> Type</h5>  <!-- Header for the overlay content -->
               <h5 class="over col-lg-2 mx-2 order-2 order-sm-2 order-md-2 order-lg-0"> Abilities</h5> <!-- Header for the overlay content -->
@@ -56,10 +50,11 @@
                   <p class= "over  mx-2 col-lg-2 order-1 order-sm-1 order-md-1"> hfahjfkjsdh <br> kjshfsdkjfhsdj</p> <!-- Paragraph for the overlay content -->
                   <p class= "over mx-2 col-lg-2 order-3 order-sm-3 order-md-3"> hfahjfkjsdh <br> kjshfsdkjfhsdj</p> <!-- Paragraph for the overlay content -->
                   <p class= "over mx-2 col-lg-2 order-5 order-sm-5 order-md-5"> hfahjfkjsdh <br> kjshfsdkjfhsdj</p> <!-- Paragraph for the overlay content -->
-                  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"  class= "col-lg-3 order-first order-lg-last" alt="..."> <!-- Image for the overlay content -->
+                  <!-- <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"  class= "col-lg-3 order-first order-lg-last" alt="..."> Image for the overlay content -->
                 </div>
           </div>  
       </div>
+  
 
     </main>
 

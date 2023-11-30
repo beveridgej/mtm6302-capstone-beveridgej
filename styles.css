@@ -136,3 +136,8 @@ div .btn:hover{
   font-weight: 600;
   color: white;
 }
+
+.card {
+  width: 12em; 
+  aspect-ratio: 1;
+}

@@ -1,55 +1,35 @@
 
-// // Gets the side navigation and main content elements
-// const mySideNav = document.getElementById("mySideNav");
-// const main = document.getElementById("main");
 
-// // Open sidenav function
-// function openNav() {
-//     mySideNav.style.width = "250px"; // Sets the width of the sidenav to 250px
-//     main.style.marginLeft = "250px"; // Moves the main content to the right by 250px
-// }
+// Select the open button, close button, and sidebar elements
+const openBtn = document.querySelector('#openBtn');
+const closeBtn = document.querySelector('#closeBtn');
+const mySideNav = document.querySelector('#mySideNav');
 
-// // Close sidenav function
-// function closeNav() {
-//     mySideNav.style.width = "0"; // Sets the width of the side navigation to 0
-//     main.style.marginLeft= "0"; // Move the main content back to the left
-// }
+// Add a click event listener to the open button
+openBtn.addEventListener('click', function() {
+    mySideNav.style.width = '250px'; // Open the sidebar
+});
 
-// // Adds event listeners
-// document.addEventListener('openNav', openNav); // Adds event listeners for opening the sidenav
-// document.addEventListener('closeNav', closeNav); // Adds event listeners for opening the sidenav
-
-// const overlay = document.getElementById('overlay');  // Gets the overlay and button elements
-// const button = document.querySelector('.button'); 
-// const btnclose = document.getElementById('btnclose')
+// Add a click event listener to the close button
+closeBtn.addEventListener('click', function() {
+    mySideNav.style.width = '0'; // Close the sidebar
+});
 
 
 
-// // button.addEventListener('click', function() { // Add an event listener to the button for toggling the overlay
-    
-//     // if (overlay.style.display === 'none') {  // If the overlay is hidden, show it. Otherwise, hide it.
-//         // overlay.style.display = 'block';
-//     // } else {
-//         // overlay.style.display = 'none';
-//     // }
-// // });
-
-
-// btnclose.addEventListener('click', function() { // Add an event listener to the close button for hiding the overlay
-//     overlay.style.display = 'none';
-// }); 
 
 
 // const sidebar = document.getElementById('mySideNav'); // Gets the sidebar and toggle button elements
 // const toggleButton = document.getElementById('toggleButton');
 
-// // Creates the image element with a grid in the sidenav
+// // // Creates the image element with a grid in the sidenav
 // let img = document.createElement('img');
-// img.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png';
+// // <img src="${pokemon.spriteImageUrl}" class=" button card-img-top" alt="">;
 // sidebar.style.display = 'grid';
 // sidebar.style.gridTemplateColumns = '1fr'; 
 // sidebar.style.gridAutoRows = 'auto'; 
 // sidebar.style.justifyItems = 'center';
+
 
 
 // toggleButton.addEventListener('click', function() { // Adds an event listener to the toggle button for adding/removing the image
@@ -62,136 +42,104 @@
 //         sidebar.appendChild(img); // If the image is not in the sidebar, add it
 //     }
 // });
+
+
+
+// DOM elements
+const $pokemons = document.getElementById('pokemons')
+let pokemons = [];
+
+
 function parseUrl (url) {
     return url.substring(url.substring(0, url.length - 2).lastIndexOf('/') + 1, url.length - 1)
 }
 
 
 
-let result = parseUrl("https://pokeapi.co/api/v2/pokemon/");
-console.log(result);
+let startIndex = 1; // Start index for the Pokemon to fetch
 
+async function getPokemons(start){
+    const pokemons = []; // Array to store all the Pokemon data
+    for(let i = start; i < start + 20; i++){ // Fetch data for 20 Pokemons starting from 'start'
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/` + i);
+        const data = await response.json();
+        const pokemon = {
+            name: data.name,
+            spriteImageUrl: data.sprites.front_default,
+            artworkImageUrl: data.sprites.other['official-artwork'].front_default
+            
+        };
+        pokemons.push(pokemon);
 
-// DOM elements
-const $pokemons = document.getElementById('pokemons')
-
-// let books = []
-let pokemons = []
-
-
-
-// Function to display all the books
+    }
+    const html = buildPokemons(pokemons);
+    $pokemons.innerHTML += html.join(''); // Append the new Pokemon to the existing ones
+}
 
 function buildPokemons(pokemons){
-
-    const html = []
-
-    for( const pokemon of pokemons){
+    const html = [];
+    for(const pokemon of pokemons){
         html.push(`
-
-        <button class="card btn w-75 mb-3 mx-auto btn-outline-warning">  
-            <div  class="card-body">
-                <img src="${pokemon.return[0].sprites.front_default}" class=" button card-img-top" alt="${pokemon.name}">  
-                <img src="/images/pokeball_on.png" id="toggleButton" class="position-absolute top-0 start-0 translate-middle p-2"></img> 
-                <h5 class="card-title">${pokemon.name}</h5>  
-            </div>
-        </button>   
-`)
-    }
-
-    return html
-}
-
-// Fetch
-// fetch('https://pokeapi.co/api/v2/pokemon + id')
-//   .then(response => response.json())
-//   .then(json => console.log(json))
-
-async function getPokemons(){
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon`)
-    data = await response.json()
-
-    console.log(data)
-    const html = buildPokemons(pokemons)
-
-    $pokemons.innerHTML = html.join('')
-}
-
-getPokemons()
-// buildWishList()
-
-
-
-//Display details
-
-// async function getBook(id){
-//     const response = await fetch('https://pokeapi.co/api/v2/pokemon' + id)
-//     const obj = await response.json()
-
-//     $books.innerHTML = `
-//     <a href="" class="col-6 mb-3">
-//         <img src="${obj.image}" alt="" class="img-fluid">
-//     </a>
-//     <div class="col-6">
-//         <h1>${obj.title}</h1>
-//         <p>${obj.description}</p>
-//         <button class="back btn btn-secondary">Back</button>
-//         <button class="save btn btn-primary"
-//             data-id="${obj.id}"
-//             data-title="${obj.title}"
-//             data-description="${obj.description}"
-//             data-image="${obj.image}"
-//         >+</button>
-//         <button class="remove btn btn-danger" data-id="${obj.id}">-</button>
+        <div class="col-lg-3 d-flex justify-content-center"> 
+            <button class="card btn mb-3 mx-auto btn-outline-warning" onclick="showOverlay('${pokemon.artworkImageUrl}')"> 
+                <div class="card-body align-items-center d-flex flex-column justify-content-center">
+                    <img src="${pokemon.spriteImageUrl}" class=" button card-img-top" alt="">  
+                    <img src="/images/pokeball_on.png" id="toggleButton" class="toggleButton position-absolute top-0 start-0 translate-middle p-2"></img> 
+                    <h5 class="card-title">${pokemon.name}</h5>  
+                </div>
+            </button>   
+        </div>
+         
+       
+        `);
         
-//     </div>
-//     `
-
-// }
-
-
-// $seussology.addEventListener('click', function(e){
-//     e.preventDefault()
-
-//     if(e.target.closest('.book')){
-//         getBook(e.target.closest('.book').dataset.id)
-//     }else if(e.target.classList.contains('back')){
-//         getBooks()
-//     }else if(e.target.classList.contains('save')){
-//         if(!save.find(book => book.id === e.target.dataset.id)){
-//             save.push({
-//                 id: e.target.dataset.id,
-//                 title: e.target.dataset.title,
-//                 description: e.target.dataset.description,
-//                 image: e.target.dataset.image
-//             })
-            
-//             localStorage.setItem('save', JSON.stringify(save))
-//             buildWishList()
-//         }
-//     }else if(e.target.classList.contains('remove')){
-//         console.log(e.target.dataset.id)
-//         const index = save.findIndex( book => book.id === e.target.dataset.id )
-//         console.log(index)
-//         if(index >= 0){
-//             save.splice(index, 1)
-//             localStorage.setItem('save',JSON.stringify(save))
-//             buildWishList()
-
-//         }
-
-//     }
+        
+    }
+    
+    return html;
+}
 
 
-// })
+
+getPokemons(startIndex); // Fetch the first 20 Pokemon
 
 
-// function buildWishList(){
-//     const ls = JSON.parse(localStorage.getItem('save'))
 
-//     if(ls){
-//         save = ls
-//     }
-//     const html = buildBooks(save)
-//     $wishList.innerHTML = html.join('')
-// }
+document.querySelector('.btn.btn-outline-warning').addEventListener('click', () => {
+    startIndex += 20; // Increment the start index by 20
+    getPokemons(startIndex); // Fetch the next 20 Pokemon
+});
+
+
+function showOverlay(imageUrl) {
+    const overlay = document.getElementById('overlay');
+    if (overlay) {
+      // Add the image to the overlay
+      overlay.innerHTML = `
+      <span id="btnclose" class="close" onclick="hideOverlay()">&times;</span>
+      <div class="container-fluid text-center px-5 mt-5" id="pokemonsHd"> 
+        <div class="row">
+          <h5 class="over mx-2 col-lg-2 order-0 order-sm-0 order-md-0 order-lg-0"> Type</h5>
+          <h5 class="over col-lg-2 mx-2 order-2 order-sm-2 order-md-2 order-lg-0"> Abilities</h5>
+          <h5 class="over col-lg-2 mx-2 order-4 order-sm-4 order-md-4 order-lg-0"> Moves</h5>
+          <div class="w-100 d-none d-lg-block"> </div>
+          <p class= "over  mx-2 col-lg-2 order-1 order-sm-1 order-md-1"> hfahjfkjsdh <br> kjshfsdkjfhsdj</p>
+          <p class= "over mx-2 col-lg-2 order-3 order-sm-3 order-md-3"> hfahjfkjsdh <br> kjshfsdkjfhsdj</p>
+          <p class= "over mx-2 col-lg-2 order-5 order-sm-5 order-md-5"> hfahjfkjsdh <br> kjshfsdkjfhsdj</p>
+          <img src="${imageUrl}"  class= "col-lg-3 order-first order-lg-last" alt="">
+        </div>
+      </div>`;
+   
+  
+      // Show the overlay
+      overlay.style.display = 'block';
+    }
+  }
+  
+  // Function to hide the overlay
+  function hideOverlay() {
+    const overlay = document.getElementById('overlay');
+    if (overlay) {
+      overlay.style.display = 'none';
+    }
+  }
