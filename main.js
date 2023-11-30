@@ -66,22 +66,25 @@ async function getPokemons(start){
         const pokemon = {
             name: data.name,
             spriteImageUrl: data.sprites.front_default,
-            artworkImageUrl: data.sprites.other['official-artwork'].front_default
-            
+            artworkImageUrl: data.sprites.other['official-artwork'].front_default,
+            types: data.types.map(type => type.type.name), // Fetch the types
+            abilities: data.abilities.map(ability => ability.ability.name), // Fetch the abilities
+            moves: data.moves.slice(0, 4).map(move => move.move.name) // Fetch the moves
         };
         pokemons.push(pokemon);
-
     }
     const html = buildPokemons(pokemons);
     $pokemons.innerHTML += html.join(''); // Append the new Pokemon to the existing ones
 }
+
 
 function buildPokemons(pokemons){
     const html = [];
     for(const pokemon of pokemons){
         html.push(`
         <div class="col-lg-3 d-flex justify-content-center"> 
-            <button class="card btn mb-3 mx-auto btn-outline-warning" onclick="showOverlay('${pokemon.artworkImageUrl}')"> 
+        <button class="card btn mb-3 mx-auto btn-outline-warning" data-pokemon='${JSON.stringify(pokemon)}' onclick='showOverlay(this)'>
+ 
                 <div class="card-body align-items-center d-flex flex-column justify-content-center">
                     <img src="${pokemon.spriteImageUrl}" class=" button card-img-top" alt="">  
                     <img src="/images/pokeball_on.png" id="toggleButton" class="toggleButton position-absolute top-0 start-0 translate-middle p-2"></img> 
@@ -111,30 +114,30 @@ document.querySelector('.btn.btn-outline-warning').addEventListener('click', () 
 });
 
 
-function showOverlay(imageUrl) {
+function showOverlay(button) {
+    const pokemonString = button.getAttribute('data-pokemon');
+    const pokemon = JSON.parse(pokemonString);
     const overlay = document.getElementById('overlay');
     if (overlay) {
-      // Add the image to the overlay
+      // Add the image and details to the overlay
       overlay.innerHTML = `
-      <span id="btnclose" class="close" onclick="hideOverlay()">&times;</span>
-      <div class="container-fluid text-center px-5 mt-5" id="pokemonsHd"> 
+      <span id="btnclose" class="close" onclick="hideOverlay()">×</span>
+      <div class="container-fluid d-flex align-items-center justify-content-center text-center px-5 mt-5" id="pokemonsHd""> 
         <div class="row">
-          <h5 class="over mx-2 col-lg-2 order-0 order-sm-0 order-md-0 order-lg-0"> Type</h5>
-          <h5 class="over col-lg-2 mx-2 order-2 order-sm-2 order-md-2 order-lg-0"> Abilities</h5>
-          <h5 class="over col-lg-2 mx-2 order-4 order-sm-4 order-md-4 order-lg-0"> Moves</h5>
-          <div class="w-100 d-none d-lg-block"> </div>
-          <p class= "over  mx-2 col-lg-2 order-1 order-sm-1 order-md-1"> hfahjfkjsdh <br> kjshfsdkjfhsdj</p>
-          <p class= "over mx-2 col-lg-2 order-3 order-sm-3 order-md-3"> hfahjfkjsdh <br> kjshfsdkjfhsdj</p>
-          <p class= "over mx-2 col-lg-2 order-5 order-sm-5 order-md-5"> hfahjfkjsdh <br> kjshfsdkjfhsdj</p>
-          <img src="${imageUrl}"  class= "col-lg-3 order-first order-lg-last" alt="">
+          <h5 class="over mx-2 col-lg-2 order-0 order-sm-0 order-md-0 order-lg-0"> Type: ${pokemon.types.join(', ')}</h5>
+          <h5 class="over col-lg-2 mx-2 order-2 order-sm-2 order-md-2 order-lg-0"> Abilities: ${pokemon.abilities.join(', ')}</h5>
+          <h5 class="over col-lg-2 mx-2 order-4 order-sm-4 order-md-4 order-lg-0"> Moves: ${pokemon.moves.join(', ')}</h5>
+          
+          <img src="${pokemon.artworkImageUrl}"  class= "col-lg-3 order-first order-lg-last" alt="">
         </div>
       </div>`;
    
-  
       // Show the overlay
       overlay.style.display = 'block';
     }
-  }
+}
+
+
   
   // Function to hide the overlay
   function hideOverlay() {
