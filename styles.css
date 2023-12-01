@@ -1,5 +1,5 @@
 
-/* Styles for main header */
+
 .display-1 {
     font-family: 'Audiowide', sans-serif;
     color: #ffd700;
@@ -7,14 +7,14 @@
     
 }
 
-/* Styles for h4 headers */
+
 h4{
     font-family: 'Audiowide', sans-serif;
     -webkit-text-stroke: 1px #01c6ff;
     --bs-card-title-color:#ffd700;
 }
 
-/* Styles for h5 headers */
+
 h5{
     text-decoration: none;
     --bs-card-title-color:#ffd700;
@@ -25,14 +25,15 @@ h5{
     
 }
 
-/* Styles for body content */
+
 body {
   background: no-repeat center center fixed;
     background-image: url('images/AdobeStock_580291632.jpeg');
     background-size:cover;
+    height: 100%;
 }
 
-/* Styles for buttons */
+
 div .btn{
     
     border-radius: 10px;
@@ -48,42 +49,60 @@ div .btn{
     --bs-btn-active-bg:rgba(255, 255, 255, 0.5);
 }
 
-/* Styles for hover on buttons */
+
 div .btn:hover{
   box-shadow: none;
 }
 
-/* Styles on main content */
+
 #main{font-size:30px;
     cursor:pointer;
 }
 
-/* Styles fopr sidenav */
+.sidenav .pokemon-container {
+  margin-top: 20px; 
+  overflow-y: auto;
+  height: calc(100% - 20px);
+}
+
+
 .sidenav {
-    height: 100%; 
-    width: 0; 
-    position: fixed; 
-    z-index: 1; 
-    top: 0;
-    right: 0;
-    background-color: #122a6b; 
-    overflow-x: hidden; 
-    padding-top: 60px; 
-    transition: 0.5s; 
+  height: 100%; 
+  width: 0; 
+  z-index: 1; 
+  top: 0;
+  right: 0;
+  background-color: #122a6b; 
+  overflow-x: hidden; 
+  padding-top: 60px; 
+  transition: 0.5s; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto; 
+  position: sticky;
 }
-  
-  /* The navigation menu links */
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
+.sidenav h4 {
+  position: sticky;
+  top: 0;
 }
+
   
   
-  /* Styles for close button in caught list */
+
+  .sidenav .pokemon-container {
+    margin-top: 20px; 
+    overflow-y: auto;
+    height: calc(100% - 20px); 
+  }
+
+  .sidenav .caught-container {
+    overflow-y: auto;
+    height: calc(100% - 60px); 
+  }
+  
+
+  
   .sidenav .closebtn {
     position: absolute;
     top: 0;
@@ -94,7 +113,7 @@ div .btn:hover{
     cursor: pointer;
 }
 
-/* Styles for paragraphs in overlay */
+
 .over{
   background: none;
   border-style: solid;
@@ -107,14 +126,20 @@ div .btn:hover{
 
 }
 
-/* Styles for pokeball caught button */
+p{
+  font-family: 'Audiowide', sans-serif;
+  color: black;
+
+}
+
+
   .navBtn {
     position:fixed; top:0; right:0;
     cursor: pointer;
 }
 
 
-/* Styles for Overlay */
+
 #overlay {
   position: fixed; 
   display: none; 
@@ -131,7 +156,7 @@ div .btn:hover{
   
 }
 
-/* Styles for close button in overlay*/
+
 .close {
   font-size: 45px;
   font-weight: 600;
@@ -141,4 +166,9 @@ div .btn:hover{
 .card {
   width: 12em; 
   aspect-ratio: 1;
+}
+
+.toggleButton {
+  top: 0px; right: 2em;
+
 }
