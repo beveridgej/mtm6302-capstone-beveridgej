@@ -11,33 +11,34 @@
 <body>
     
     <header> 
-      <div class="container text-center"> 
-        <div class="row justify-content-center"> 
+      <div class="container text-center"> <!-- A container with text aligned to the center -->
+        <div class="row justify-content-center"> <!-- A row that justifies content to the center -->
           
           <h1 class="display-1 col">Catch 'Em All</h1> 
         
         </div>
       </div>
     <div class="navpos">
-      <img src="/images/pokeball_on.png" class="navBtn" id="openBtn"></img> 
+      <img src="/images/pokeball_on.png" class="navBtn" id="openBtn"></img> <!-- Image that opens a navigation menu when clicked -->
     </div>
     </header>
 
     <main>
-      <div id="mySideNav" class="sidenav  top-0 end-0 sticky-top align-items-center justify-content-center "> 
+      <div id="mySideNav" class="sidenav position-absolute top-0 end-0 sticky-top align-items-center
+      justify-content-center "> <!-- Side navigation bar -->
         
         <h4>Caught</h4>
         <div id="closeBtn" class="closebtn" >&times;</div>
         <div class="caught-container">
-          
-      </div>
-         
+        <!-- Caught Pokemon will be added here -->
+    </div>
+         <!-- Close button for the side navigation bar -->
       </div>
       
   
       <div class="container justify-content-center">
         <div class="row row-cols-lg-3 button pokecard" id="pokemons">
-            
+            <!-- The Pokemon cards will be added here -->
         </div>
     </div>
 
@@ -53,8 +54,8 @@
 
     <footer>
 
-      <div class="container d-flex justify-content-center"> 
-        <button type="button" class="btn btn-outline-warning">More</button> 
+      <div class="container d-flex justify-content-center" > <!-- Container with display set to flex and content justified to the center -->
+        <button type="button" class=" btn btn-warning">More</button> <!-- Button of type 'button', styled with an outline and warning color -->
       </div>
 
     </footer>
