@@ -70,22 +70,25 @@ div .btn:hover{
   height: 100%; 
   width: 0; 
   z-index: 1; 
-  top: 0;
-  right: 0;
-  background-color: #122a6b; 
+
+  background-color: rgba(50, 129, 202, 0.952); 
   overflow-x: hidden; 
-  padding-top: 60px; 
+ 
   transition: 0.5s; 
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-y: auto; 
-  position: sticky; /* Add this line */
+  border: 2px solid rgba(255, 255, 255, 0.178); /* Adjust color as needed */
+  border-radius: 10px; 
 }
+
 .sidenav h4 {
   position: sticky;
   top: 0;
 }
+
+
 
   
   /* The navigation menu links */
@@ -141,6 +144,7 @@ p{
   .navBtn {
     position:fixed; top:0; right:0;
     cursor: pointer;
+    margin-right: 5px;
 }
 
 
@@ -175,6 +179,8 @@ p{
 
 .toggleButton {
   top: 0px; right: 2em;
+  
+  
 
 }
 
